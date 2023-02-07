@@ -25,11 +25,11 @@
     <!-- Arquillian Core common Deps, Test related -->
     <version.javax.inject>1</version.javax.inject>
     <version.junit>4.13.2</version.junit>
-    <version.junit5.platform>1.8.2</version.junit5.platform>
-    <version.junit5>5.8.2</version.junit5>
-    <version.mockito>4.4.0</version.mockito>
+    <version.junit5.platform>1.9.2</version.junit5.platform>
+    <version.junit5>5.9.2</version.junit5>
+    <version.mockito>4.10.0</version.mockito>
     <version.testng>7.5</version.testng>
-    <version.assertj>3.22.0</version.assertj>
+    <version.assertj>3.24.2</version.assertj>
   </properties>
 
   <!-- Dependency Management -->
@@ -117,7 +117,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>animal-sniffer-maven-plugin</artifactId>
-        <version>1.21</version>
+        <version>1.22</version>
         <executions>
           <execution>
             <id>signature-check</id>

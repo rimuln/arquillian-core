@@ -14,16 +14,17 @@
 
   <!-- Artifact Configuration -->
   <groupId>org.jboss.arquillian.protocol</groupId>
-  <artifactId>arquillian-protocol-servlet-jakarta</artifactId>
-  <name>Arquillian Protocol Servlet 5.x</name>
-  <description>Protocol handler for communicating using a servlet / http following the Servlet 5.x spec and jakarta.servlet.* apis
+  <artifactId>arquillian-protocol-rest-jakarta</artifactId>
+  <name>Arquillian Protocol REST 3.x</name>
+  <description>Protocol handler for communicating using REST following the Jakarta RESTful Web Services 3.x spec and jakarta.ws.rs.* apis
   </description>
 
   <!-- Properties -->
   <properties>
     <!-- Versioning -->
     <version.jetty_jetty>11.0.10</version.jetty_jetty>
-    <version.servlet-api>5.0.0</version.servlet-api>
+    <version.resteasy>6.2.2.Final</version.resteasy>
+    <version.restfulws-api>3.0.0</version.restfulws-api>
     <!-- The protocol adaptor requires Java 8 -->
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -53,6 +54,11 @@
       <artifactId>arquillian-container-test-impl-base</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.protocol</groupId>
+      <artifactId>arquillian-protocol-servlet-jakarta</artifactId>
+      <version>${project.version}</version>
+    </dependency>
 
     <dependency>
       <groupId>org.jboss.shrinkwrap.descriptors</groupId>
@@ -60,11 +66,11 @@
       <scope>compile</scope>
     </dependency>
 
-    <!-- servlet api -->
+    <!-- restfulws api -->
     <dependency>
-      <groupId>jakarta.servlet</groupId>
-      <artifactId>jakarta.servlet-api</artifactId>
-      <version>${version.servlet-api}</version>
+      <groupId>jakarta.ws.rs</groupId>
+      <artifactId>jakarta.ws.rs-api</artifactId>
+      <version>${version.restfulws-api}</version>
       <scope>provided</scope>
     </dependency>
 
@@ -88,6 +94,18 @@
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-servlet</artifactId>
       <version>${version.jetty_jetty}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-servlet-initializer</artifactId>
+      <version>${version.resteasy}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-core</artifactId>
+      <version>${version.resteasy}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
