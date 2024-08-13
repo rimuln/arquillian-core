@@ -22,7 +22,7 @@ import org.jboss.arquillian.container.test.spi.TestRunner;
 import org.jboss.arquillian.junit.State;
 import org.jboss.arquillian.test.spi.TestResult;
 import org.junit.Test;
-import org.junit.internal.AssumptionViolatedException;
+import org.junit.AssumptionViolatedException;
 import org.junit.runner.Description;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Request;
@@ -92,7 +92,6 @@ public class JUnitTestRunner implements TestRunner {
             // AssumptionViolatedException might not be Serializable. Recreate with only String message.
             exception = new AssumptionViolatedException(failure.getException().getMessage());
             exception.setStackTrace(failure.getException().getStackTrace());
-            ;
         }
 
         @Override

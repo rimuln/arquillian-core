@@ -34,7 +34,7 @@ public final class TestResult implements Serializable {
     private static final long serialVersionUID = 1L;
     private Status status;
     private String description = "";
-    transient private Throwable throwable;
+    private transient Throwable throwable;
     private ExceptionProxy exceptionProxy;
     private long start;
     private long end;
@@ -147,11 +147,11 @@ public final class TestResult implements Serializable {
 
     private static void propagateTestResultStatus(TestResult combinedResult, Map<Status, TestResult> resultsPerStatus) {
         if (resultsPerStatus.containsKey(Status.FAILED)) {
-            combinedResult.setStatus(Status.FAILED);
+            combinedResult.status = Status.FAILED;
         } else if (resultsPerStatus.containsKey(Status.PASSED)) {
-            combinedResult.setStatus(Status.PASSED);
+            combinedResult.status = Status.PASSED;
         } else if (resultsPerStatus.containsKey(Status.SKIPPED)) {
-            combinedResult.setStatus(Status.SKIPPED);
+            combinedResult.status = Status.SKIPPED;
         }
     }
 

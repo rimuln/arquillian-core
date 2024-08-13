@@ -10,7 +10,7 @@
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,  
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -26,6 +26,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import org.eclipse.jetty.server.Connector;
+import org.eclipse.jetty.server.NetworkConnector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.jboss.arquillian.container.spi.client.protocol.metadata.HTTPContext;
@@ -88,7 +91,13 @@ public class AbstractServerBase {
     }
 
     protected URI createBaseURL() {
-        return URI.create("http://localhost:" + server.getConnectors()[0].getPort() + "/arquillian-protocol");
+        int port = 8080;
+        Connector defaultConn = server.getConnectors()[0];
+        if (defaultConn instanceof NetworkConnector) {
+            NetworkConnector net = (NetworkConnector) defaultConn;
+            port = net.getLocalPort();
+        }
+        return URI.create("http://localhost:" + port + "/arquillian-protocol");
     }
 
     protected URL createURL(String outputMode, String testClass, String methodName) {

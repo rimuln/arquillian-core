@@ -10,7 +10,7 @@
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,  
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -83,7 +83,7 @@ public class BeansXMLProtocolProcessorTestCase {
         WebArchive protocol = ShrinkWrap.create(WebArchive.class);
 
         new BeansXMLProtocolProcessor().process(
-            new TestDeployment(protocol, new ArrayList<Archive<?>>()), protocol);
+            new TestDeployment(null, protocol, new ArrayList<Archive<?>>()), protocol);
 
         Assert.assertFalse(protocol.contains("WEB-INF/beans.xml"));
     }
@@ -97,7 +97,7 @@ public class BeansXMLProtocolProcessorTestCase {
         WebArchive protocol = deployment.as(WebArchive.class);
 
         new BeansXMLProtocolProcessor().process(
-            new TestDeployment(deployment, new ArrayList<Archive<?>>()), protocol);
+            new TestDeployment(null, deployment, new ArrayList<Archive<?>>()), protocol);
 
         Assert.assertTrue(protocol.contains("WEB-INF/beans.xml"));
 
@@ -117,7 +117,7 @@ public class BeansXMLProtocolProcessorTestCase {
             .addAsWebInfResource(new StringAsset(beansXmlContent), "beans.xml");
 
         new BeansXMLProtocolProcessor().process(
-            new TestDeployment(deployment, new ArrayList<Archive<?>>()), protocol);
+            new TestDeployment(null, deployment, new ArrayList<Archive<?>>()), protocol);
 
         Assert.assertTrue(protocol.contains("WEB-INF/beans.xml"));
 
@@ -137,7 +137,7 @@ public class BeansXMLProtocolProcessorTestCase {
             .addAsManifestResource(new StringAsset(beansXmlContent), "beans.xml");
 
         new BeansXMLProtocolProcessor().process(
-            new TestDeployment(deployment, new ArrayList<Archive<?>>()), protocol);
+            new TestDeployment(null, deployment, new ArrayList<Archive<?>>()), protocol);
 
         Assert.assertTrue(protocol.contains("META-INF/beans.xml"));
 
@@ -157,7 +157,7 @@ public class BeansXMLProtocolProcessorTestCase {
 
     public void runAndAsset(Archive<?> deployment, Archive<?> protocol, boolean shouldBeFound, String expectedLocation) {
         new BeansXMLProtocolProcessor().process(
-            new TestDeployment(deployment, new ArrayList<Archive<?>>()), protocol);
+            new TestDeployment(null, deployment, new ArrayList<Archive<?>>()), protocol);
 
         System.out.println(protocol.toString(true));
         Assert.assertEquals(

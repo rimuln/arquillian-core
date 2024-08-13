@@ -27,7 +27,6 @@ import java.util.Map;
 import org.jboss.arquillian.test.spi.LifecycleMethodExecutor;
 import org.jboss.arquillian.test.spi.TestMethodExecutor;
 import org.jboss.arquillian.test.spi.TestResult;
-import org.jboss.arquillian.test.spi.TestResult.Status;
 import org.jboss.arquillian.test.spi.TestRunnerAdaptor;
 import org.jboss.arquillian.test.spi.TestRunnerAdaptorBuilder;
 import org.junit.After;
@@ -101,7 +100,7 @@ public class TestNGTestBaseClass {
             .before(any(Object.class), any(Method.class), any(LifecycleMethodExecutor.class));
         doAnswer(new ExecuteLifecycle(Cycle.AFTER)).when(adaptor)
             .after(any(Object.class), any(Method.class), any(LifecycleMethodExecutor.class));
-        doAnswer(new TestExecuteLifecycle(new TestResult(Status.PASSED))).when(adaptor)
+        doAnswer(new TestExecuteLifecycle(TestResult.passed())).when(adaptor)
             .test(any(TestMethodExecutor.class));
     }
 
@@ -164,9 +163,7 @@ public class TestNGTestBaseClass {
         method.invoke(null, adaptor);
     }
 
-    public static enum Cycle
-
-    {
+    public enum Cycle {
         BEFORE_SUITE, BEFORE_CLASS, BEFORE, TEST, AFTER, AFTER_CLASS, AFTER_SUITE
     }
 
